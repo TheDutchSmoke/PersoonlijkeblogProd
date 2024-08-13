@@ -12,5 +12,5 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: mijnscreens.nl
-        username: git
+        username: git@mijnscreens.nl
         password: ${{ secrets.ftp_password }}

@@ -37,19 +37,7 @@ jobs:
           destination: ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-
-
-# name: 🚀 Deploy website on push
-# jobs:
-#name: Publish Website
-  web-deploy:
-    name: web-deploy
-    runs-on: ubuntu-latest
-    timeout-minutes: 1 # time out after 15 minutes (default is 360 minutes)
-    name: 🎉 Deploy
-    runs-on: ubuntu-latest
-    steps:
-    - name: 🚚 Get latest code
+     - name: 🚚 Get latest code
       uses: actions/checkout@v4
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -59,6 +47,28 @@ jobs:
         password: ${{ secrets.ftp_password }}
         server-dir: public_html/test/
         local-dir: ./_site/
+
+
+# name: 🚀 Deploy website on push
+# jobs:
+#name: Publish Website
+#  web-deploy:
+#    name: web-deploy
+#    runs-on: ubuntu-latest
+#    timeout-minutes: 1 # time out after 15 minutes (default is 360 minutes)
+#    name: 🎉 Deploy
+#    runs-on: ubuntu-latest
+#    steps:
+#    - name: 🚚 Get latest code
+#      uses: actions/checkout@v4
+#    - name: 📂 Sync files
+#      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+#      with:
+#        server: mijnscreens.nl
+#        username: git@mijnscreens.nl
+#        password: ${{ secrets.ftp_password }}
+#        server-dir: public_html/test/
+#        local-dir: ./_site/
 
   # Deployment job
   deploy:

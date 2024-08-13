@@ -41,6 +41,12 @@ jobs:
 
 # name: 🚀 Deploy website on push
 # jobs:
+#name: Publish Website
+jobs:
+  web-deploy:
+    name: web-deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 15 # time out after 15 minutes (default is 360 minutes)
   web-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest

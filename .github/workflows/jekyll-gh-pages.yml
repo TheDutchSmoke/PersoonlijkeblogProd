@@ -38,6 +38,25 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
+on: push
+name: 🚀 Deploy website on push
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: mijnscreens.nl
+        username: git@mijnscreens.nl
+        password: ${{ secrets.ftp_password }}
+        server-dir: public_html/test/
+        local-dir: ./_site/
+
   # Deployment job
   deploy:
     environment:

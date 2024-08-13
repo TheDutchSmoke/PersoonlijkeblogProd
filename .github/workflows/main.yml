@@ -1,18 +1,33 @@
-on: push
-name: 🚀 Deploy website on push
+name: Build & Upload Site
+# Run on pushes to the master branch
+on: 
+  push:
+    branches:
+      - master
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  build:
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v4
-    
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+    - uses: actions/checkout@v2
+    - uses: actions/setup-ruby@v1
       with:
-        server: mijnscreens.nl
-        username: git@mijnscreens.nl
-        password: ${{ secrets.ftp_password }}
-        server-dir: public_html/test/
-        local-dir: ./_site/
+<<<<<<< HEAD
+        ruby-version: '2.7'
+    # Install the gems in the gemfile & install ncftp
+    - name: Setup Environment.
+      run: |
+        bundle install
+        sudo apt-get install -y ncftp
+    
+    # Build the site
+    - name: Build Site with Jekyll.
+      run: JEKYLL_ENV=production bundle exec jekyll build
+    
+    # Looks kind of complicated but just uploads the content of _site folder to the ftp server. It does not upload the _site folder itself.
+    - name: Upload site to FTP.
+      env: 
+        ftp_location: ${{ secrets.FTP_LOCATION }} # Pass in required secrets.
+        ftp_username: ${{ secrets.FTP_USERNAME }}
+        ftp_password: ${{ secrets.FTP_PASSWORD }} 
+      run: |
+        ncftpput -R -v -u "$ftp_username" -p "$ftp_password" $ftp_location / _site/* 

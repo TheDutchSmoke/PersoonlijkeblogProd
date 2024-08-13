@@ -38,9 +38,9 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
-on: push
-name: 🚀 Deploy website on push
-jobs:
+
+# name: 🚀 Deploy website on push
+# jobs:
   web-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest

@@ -15,4 +15,4 @@ jobs:
         username: git@mijnscreens.nl
         password: ${{ secrets.ftp_password }}
         server-dir: public_html/test/
-        local-dir: ./_site
+        local-dir: ./_site/
